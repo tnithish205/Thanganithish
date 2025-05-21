@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Program-1: Simple Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 400px;
+      margin: 50px auto;
+      background: #f9f9f9;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
+      color: #555;
+    }
+
+    input, select {
+      margin-top: 6px;
+      padding: 10px;
+      width: 100%;
+      border: 1.5px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+      box-sizing: border-box;
+      transition: border-color 0.3s;
+    }
+
+    input:focus, select:focus {
+      border-color: #007BFF;
+      outline: none;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px;
+      width: 100%;
+      background-color: #007BFF;
+      color: white;
+      font-size: 18px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 18px;
+      color: #222;
+      text-align: center;
+      min-height: 24px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Simple Calculator - (Program 1)</h2>
+
+  <label for="inputA">Enter number A:</label>
+  <input type="number" id="inputA" step="any" placeholder="Enter first number">
+
+  <label for="inputB">Enter number B:</label>
+  <input type="number" id="inputB" step="any" placeholder="Enter second number">
+
+  <label for="operation">Select operation:</label>
+  <select id="operation">
+    <option value="add">Add</option>
+    <option value="subtract">Subtract</option>
+    <option value="multiply">Multiply</option>
+    <option value="divide">Divide</option>
+  </select>
+
+  <button onclick="performCalculation()">Calculate</button>
+
+  <div id="result"></div>
+
+<script>
+  class Calculator {
+    constructor(a, b) {
+      this.a = a;
+      this.b = b;
+    }
+
+    operate(operation) {
+      switch (operation.toLowerCase()) {
+        case 'add':
+          return this.a + this.b;
+        case 'subtract':
+          return this.a - this.b;
+        case 'multiply':
+          return this.a * this.b;
+        case 'divide':
+          return this.b !== 0 ? this.a / this.b : 'Cannot divide by zero';
+        default:
+          return 'Invalid operation';
+      }
+    }
+  }
+
+  function performCalculation() {
+    const a = parseFloat(document.getElementById("inputA").value);
+    const b = parseFloat(document.getElementById("inputB").value);
+    const operation = document.getElementById("operation").value;
+
+    if (isNaN(a) || isNaN(b)) {
+      document.getElementById("result").textContent = "Please enter valid numbers.";
+      return;
+    }
+
+    const calc = new Calculator(a, b);
+    const result = calc.operate(operation);
+
+    document.getElementById("result").textContent = `Result: ${result}`;
+  }
+</script>
+</body>
+</html>

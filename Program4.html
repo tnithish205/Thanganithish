@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Program-4: Multiples Counter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 500px;
+      margin: 40px auto;
+      background: #f4f4f4;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    label {
+      font-weight: 600;
+      margin-top: 15px;
+      display: block;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border: 1.5px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 12px;
+      background-color: #007BFF;
+      color: white;
+      font-size: 18px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    pre {
+      background: #fff;
+      padding: 15px;
+      border-radius: 5px;
+      margin-top: 20px;
+      font-size: 16px;
+      overflow-x: auto;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Multiples Counter (Program 4)</h2>
+
+  <label for="numberList">Enter numbers (comma separated):</label>
+  <input type="text" id="numberList" placeholder="e.g. 1,2,8,9,12,46,76,82,15,20,30">
+
+  <button onclick="countMultiples()">Count Multiples</button>
+
+  <pre id="result"></pre>
+
+<script>
+  function countMultiples() {
+    const input = document.getElementById("numberList").value;
+    const numbers = input.split(',').map(n => parseInt(n.trim())).filter(n => !isNaN(n));
+
+    const counts = {};
+
+    for (let i = 1; i <= 9; i++) {
+      counts[i] = 0;
+      for (let num of numbers) {
+        if (num % i === 0) {
+          counts[i]++;
+        }
+      }
+    }
+
+    document.getElementById("result").textContent = JSON.stringify(counts, null, 2);
+  }
+</script>
+
+</body>
+</html>
